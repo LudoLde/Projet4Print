@@ -1,48 +1,68 @@
 const slides = [
-  {
-    image: "slide1.jpg",
-    tagLine: "Impressions tous formats <span>en boutique et en ligne</span>",
-  },
-  {
-    image: "slide2.jpg",
-    tagLine:
-      "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
-  },
-  {
-    image: "slide3.jpg",
-    tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
-  },
-  {
-    image: "slide4.png",
-    tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
-  },
+   {
+      image: "slide1.jpg",
+      tagLine: "Impressions tous formats <span>en boutique et en ligne</span>",
+   },
+   {
+      image: "slide2.jpg",
+      tagLine:
+         "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
+   },
+   {
+      image: "slide3.jpg",
+      tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
+   },
+   {
+      image: "slide4.png",
+      tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
+   },
 ];
+const prev = document.querySelector(".arrow_left");
+const next = document.querySelector(".arrow_right");
+const textP = document.querySelector("#banner p");
+const imgCaroussel = document.getElementById("img-caroussel");
+let count = 0;
+const nbImages = slides.length;
+const pointImg1 = document.querySelector(".dots :nth-child(1)");
+const pointImg2 = document.querySelector(".dots :nth-child(2)");
+const pointImg3 = document.querySelector(".dots :nth-child(3)");
+const pointImg4 = document.querySelector(".dots :nth-child(4)");
 
-let i = 0;
-const arrowLeft = document.getElementsByClassName("arrow_left");
-console.log(arrowLeft[0]);
-arrowLeft[0].addEventListener("click", function () {
-  console.log(i--);
-});
+function nextSlides() {
+   if (count < nbImages - 1) {
+      count++;
+   } else {
+      count = 0;
+   }
 
-function moins() {
-  if (i < 0) {
-    i = 3;
-  } else {
-    i = i--;
-  }
-  document.getElementById("img-caroussel").src =
-    "./assets/images/slideshow/" + slides[i].image;
-  console.log(slides[i]);
+   imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
+   textP.innerHTML = slides[count].tagLine;
+}
+function prevSlides() {
+   if (count > 0) {
+      count--;
+   } else {
+      count = 3;
+   }
+
+   imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
+   textP.innerHTML = slides[count].tagLine;
+}
+function selectSlide(numSlide) {
+   let childNum = count + 1;
+
+   document
+      .querySelector(".dots :nth-child(" + childNum + ")")
+      .classList.remove("dot_selected");
+   count = numSlide;
+
+   childNum = count + 1;
+   document
+      .querySelector(".dots :nth-child(" + childNum + ")")
+      .classList.add("dot_selected");
+   imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
+   textP.innerHTML = slides[count].tagLine;
 }
 
-function plus() {
-  if (i > 3) {
-    i = 0;
-  } else {
-    i = i++;
-  }
-  document.getElementById("img-caroussel").src =
-    "./assets/images/slideshow/" + slides[i].image;
-  console.log(slides[i]);
-}
+next.addEventListener("click", nextSlides);
+prev.addEventListener("click", prevSlides);

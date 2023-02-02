@@ -29,22 +29,38 @@ const pointImg3 = document.querySelector(".dots :nth-child(3)");
 const pointImg4 = document.querySelector(".dots :nth-child(4)");
 
 function nextSlides() {
+   let childNum = count + 1;
+
+   document
+      .querySelector(".dots :nth-child(" + childNum + ")")
+      .classList.remove("dot_selected");
    if (count < nbImages - 1) {
       count++;
    } else {
       count = 0;
    }
-
+   childNum = count + 1;
+   document
+      .querySelector(".dots :nth-child(" + childNum + ")")
+      .classList.add("dot_selected");
    imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
    textP.innerHTML = slides[count].tagLine;
 }
 function prevSlides() {
+   let childNum = count + 1;
+
+   document
+      .querySelector(".dots :nth-child(" + childNum + ")")
+      .classList.remove("dot_selected");
    if (count > 0) {
       count--;
    } else {
       count = 3;
    }
-
+   childNum = count + 1;
+   document
+      .querySelector(".dots :nth-child(" + childNum + ")")
+      .classList.add("dot_selected");
    imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
    textP.innerHTML = slides[count].tagLine;
 }

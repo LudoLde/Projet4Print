@@ -1,3 +1,5 @@
+/*   DECLARATION DES VARIABLES   */
+
 const slides = [
    {
       image: "slide1.jpg",
@@ -28,6 +30,8 @@ const pointImg2 = document.querySelector(".dots :nth-child(2)");
 const pointImg3 = document.querySelector(".dots :nth-child(3)");
 const pointImg4 = document.querySelector(".dots :nth-child(4)");
 
+/*     FONCTIONS    */
+
 function nextSlides() {
    let childNum = count + 1;
 
@@ -39,6 +43,7 @@ function nextSlides() {
    } else {
       count = 0;
    }
+
    childNum = count + 1;
    document
       .querySelector(".dots :nth-child(" + childNum + ")")
@@ -46,6 +51,7 @@ function nextSlides() {
    imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
    textP.innerHTML = slides[count].tagLine;
 }
+
 function prevSlides() {
    let childNum = count + 1;
 
@@ -57,6 +63,7 @@ function prevSlides() {
    } else {
       count = 3;
    }
+
    childNum = count + 1;
    document
       .querySelector(".dots :nth-child(" + childNum + ")")
@@ -64,6 +71,7 @@ function prevSlides() {
    imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
    textP.innerHTML = slides[count].tagLine;
 }
+
 function selectSlide(numSlide) {
    let childNum = count + 1;
 
@@ -79,6 +87,8 @@ function selectSlide(numSlide) {
    imgCaroussel.src = "./assets/images/slideshow/" + slides[count].image;
    textP.innerHTML = slides[count].tagLine;
 }
+
+/*   EVENTS LISTENERS */
 
 next.addEventListener("click", nextSlides);
 prev.addEventListener("click", prevSlides);
